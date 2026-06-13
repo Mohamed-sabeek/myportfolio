@@ -7,7 +7,7 @@ export default function About() {
   const stats = [
     { label: "Projects Completed", value: "30+" },
     { label: "Technologies Explored", value: "20+" },
-    { label: "Years of Learning", value: "4+" },
+    { label: "Years of Learning", value: "3+" },
     { label: "Certifications Earned", value: "5+" }
   ];
 
