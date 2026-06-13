@@ -148,12 +148,7 @@ export default function Skills() {
                           transition={{ duration: 0.3, type: "spring", bounce: 0.4 }}
                           className="absolute bottom-full mb-8 left-1/2 -translate-x-1/2 w-72 p-6 rounded-2xl bg-surface/90 backdrop-blur-xl border border-accentGold/30 shadow-[0_20px_40px_rgba(0,0,0,0.4)] z-50 pointer-events-none flex flex-col"
                         >
-                          <h4 className="text-xl font-serif text-text mb-2">{tech.name}</h4>
-                          <div className="flex gap-3 mb-4 text-xs font-semibold uppercase tracking-widest text-accentGold">
-                            <span>{tech.experience}</span>
-                            <span>•</span>
-                            <span>{tech.projects}</span>
-                          </div>
+                          <h4 className="text-xl font-serif text-text mb-4">{tech.name}</h4>
                           <p className="text-sm text-mutedText font-light leading-relaxed">
                             {tech.desc}
                           </p>

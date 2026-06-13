@@ -2,7 +2,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Monitor, Server, Database, Video } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
 import ImageLightbox from './ImageLightbox';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 interface ProjectModalProps {
   project: any;
@@ -14,16 +15,30 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isOpen]);
+
   if (!project) return null;
 
-  return (
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-background/80 backdrop-blur-md p-0 sm:p-6"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-md p-0 sm:p-6"
         >
           <motion.div
             initial={{ y: '100%', opacity: 0 }}
@@ -582,6 +597,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
           onClose={() => setLightboxOpen(false)} 
         />
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }

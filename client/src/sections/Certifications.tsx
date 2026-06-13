@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { staggerContainer, fadeInUp } from '../animations/variants';
 import { Eye, Download, X, Award } from 'lucide-react';
@@ -69,6 +70,20 @@ const certsData: Certification[] = [
 
 export default function Certifications() {
   const [selectedCert, setSelectedCert] = useState<typeof certsData[0] | null>(null);
+
+  useEffect(() => {
+    if (selectedCert) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [selectedCert]);
 
   return (
     <section className="container mx-auto px-6 lg:px-12 relative z-10" id="certifications">
@@ -170,7 +185,8 @@ export default function Certifications() {
       </motion.div>
 
       {/* Fullscreen Certificate Modal */}
-      <AnimatePresence>
+      {createPortal(
+        <AnimatePresence>
         {selectedCert && (
           <motion.div 
             initial={{ opacity: 0 }}
@@ -234,7 +250,9 @@ export default function Certifications() {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+        </AnimatePresence>,
+        document.body
+      )}
     </section>
   );
 }
