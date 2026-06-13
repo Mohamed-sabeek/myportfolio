@@ -2,8 +2,63 @@
 import { motion } from 'framer-motion';
 import { fadeInUp } from '../animations/variants';
 import { Send, Mail, MapPin, Phone } from 'lucide-react';
+import { useState } from 'react';
+import { sendEmail } from '../lib/emailjs';
 
 export default function Contact() {
+  // Form and submission state
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  // Handle controlled input changes
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.id]: e.target.value }));
+    if (status !== 'idle') setStatus('idle'); // Clear messages when user types
+  };
+
+  // Frontend validation
+  const validateForm = () => {
+    const { name, email, message } = formData;
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      setErrorMessage('All fields are required.');
+      return false;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim())) {
+      setErrorMessage('Please enter a valid email address.');
+      return false;
+    }
+    return true;
+  };
+
+  // Async submission flow
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      setStatus('error');
+      return;
+    }
+
+    setStatus('loading');
+    
+    try {
+      await sendEmail({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        message: formData.message.trim(),
+      });
+      setStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setStatus('idle'), 5000); // Reset success state after 5 seconds
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      setErrorMessage('Failed to send message. Please try again later.');
+      setStatus('error');
+    }
+  };
+
   return (
     <section className="container mx-auto px-6 lg:px-12 relative z-10" id="contact">
       <motion.div 
@@ -61,14 +116,17 @@ export default function Contact() {
 
           {/* Contact Form */}
           <div className="w-full lg:w-7/12">
-            <form className="clay-card p-8 md:p-10 flex flex-col gap-6">
+            <form onSubmit={handleSubmit} className="clay-card p-8 md:p-10 flex flex-col gap-6">
               <div className="flex flex-col gap-2">
                 <label htmlFor="name" className="text-sm font-medium text-text ml-2">Name</label>
                 <input 
                   type="text" 
                   id="name" 
+                  value={formData.name}
+                  onChange={handleChange}
+                  disabled={status === 'loading'}
                   placeholder="Mohamed Sabeek"
-                  className="w-full bg-surface border-none rounded-2xl px-6 py-4 text-text placeholder:text-mutedText/50 focus:outline-none focus:ring-2 focus:ring-accentGold/50 shadow-inner transition-shadow"
+                  className="w-full bg-surface border-none rounded-2xl px-6 py-4 text-text placeholder:text-mutedText/50 focus:outline-none focus:ring-2 focus:ring-accentGold/50 shadow-inner transition-shadow disabled:opacity-50"
                 />
               </div>
               
@@ -77,8 +135,11 @@ export default function Contact() {
                 <input 
                   type="email" 
                   id="email" 
+                  value={formData.email}
+                  onChange={handleChange}
+                  disabled={status === 'loading'}
                   placeholder="sabee@example.com"
-                  className="w-full bg-surface border-none rounded-2xl px-6 py-4 text-text placeholder:text-mutedText/50 focus:outline-none focus:ring-2 focus:ring-accentGold/50 shadow-inner transition-shadow"
+                  className="w-full bg-surface border-none rounded-2xl px-6 py-4 text-text placeholder:text-mutedText/50 focus:outline-none focus:ring-2 focus:ring-accentGold/50 shadow-inner transition-shadow disabled:opacity-50"
                 />
               </div>
 
@@ -87,17 +148,27 @@ export default function Contact() {
                 <textarea 
                   id="message" 
                   rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
+                  disabled={status === 'loading'}
                   placeholder="Tell me about your project..."
-                  className="w-full bg-surface border-none rounded-2xl px-6 py-4 text-text placeholder:text-mutedText/50 focus:outline-none focus:ring-2 focus:ring-accentGold/50 shadow-inner transition-shadow resize-none"
+                  className="w-full bg-surface border-none rounded-2xl px-6 py-4 text-text placeholder:text-mutedText/50 focus:outline-none focus:ring-2 focus:ring-accentGold/50 shadow-inner transition-shadow resize-none disabled:opacity-50"
                 ></textarea>
               </div>
 
+              {status === 'error' && (
+                <p className="text-red-500 text-sm font-medium ml-2">{errorMessage}</p>
+              )}
+              {status === 'success' && (
+                <p className="text-accentGold text-sm font-medium ml-2">Message sent successfully. I'll get back to you soon.</p>
+              )}
+
               <button 
-                type="button" 
-                className="clay-button mt-4 flex items-center justify-center gap-2 py-4 text-lg w-full"
-                onClick={(e) => e.preventDefault()}
+                type="submit" 
+                disabled={status === 'loading'}
+                className="clay-button mt-4 flex items-center justify-center gap-2 py-4 text-lg w-full disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                Send Message
+                {status === 'loading' ? 'Sending...' : 'Send Message'}
                 <Send className="w-5 h-5" />
               </button>
             </form>
