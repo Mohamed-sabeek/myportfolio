@@ -16,7 +16,7 @@ Designed with a focus on performance, responsiveness, modern UI/UX, and professi
 
 <!-- Add portfolio screenshot here -->
 
-![Portfolio Preview](./src/assets/hero.png)
+![Portfolio Preview](./client/src/assets/portfolio-preview.png)
 
 ---
 
