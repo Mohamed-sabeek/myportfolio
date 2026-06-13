@@ -10,7 +10,17 @@ import emailjs from '@emailjs/browser';
  * @param formData Object containing the form data (name, email, message)
  * @returns Promise that resolves on successful submission
  */
-export const sendEmail = async (formData: { name: string, email: string, message: string }) => {
+export const sendEmail = async (formData: { name: string, email: string, message: string, subject?: string }) => {
+  // Map the form data to the template parameters used in EmailJS
+  const templateParams = {
+    from_name: formData.name,
+    from_email: formData.email,
+    subject: formData.subject || "Portfolio Contact Form",
+    message: formData.message,
+  };
+
+  console.log("EmailJS Payload:", templateParams);
+
   const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
   const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
   const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
@@ -18,13 +28,6 @@ export const sendEmail = async (formData: { name: string, email: string, message
   if (!serviceId || !templateId || !publicKey) {
     throw new Error('EmailJS environment variables are missing.');
   }
-
-  // Map the form data to the template parameters used in EmailJS
-  const templateParams = {
-    from_name: formData.name,
-    reply_to: formData.email,
-    message: formData.message,
-  };
 
   // Perform the email submission workflow
   return await emailjs.send(serviceId, templateId, templateParams, { publicKey });
