@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom claymorphism utilities */
+@layer utilities {
+  .clay-bg {
+    @apply bg-surface rounded-2xl shadow-clay;
+  }
+  .clay-card {
+    @apply bg-card rounded-2xl shadow-clay;
+  }
+  .clay-button {
+    @apply bg-accentGold text-background font-medium py-2 px-6 rounded-full shadow-clay transition-transform duration-300 ease-out hover:scale-[1.04] hover:shadow-[0_16px_24px_rgba(0,0,0,0.3)];
+  }
+  .mask-image-gradient {
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  }
+
+}
+
+/* Custom Premium Scrollbar - Global & Scoped */
+::-webkit-scrollbar,
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track,
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb,
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.2);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover,
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.5);
+}
