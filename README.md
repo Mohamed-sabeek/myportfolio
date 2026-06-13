@@ -8,7 +8,7 @@ Designed with a focus on performance, responsiveness, modern UI/UX, and professi
 
 ## 🌐 Live Website
 
-🔗 https://mohamed-sabeek-portfolio.vercel.app/
+🔗 https://myportfolio-alpha-gules-77.vercel.app/
 
 ---
 
@@ -217,7 +217,7 @@ npm run preview
 ## 📬 Connect With Me
 
 ### Portfolio
-🔗 Portfolio Website
+🔗 https://myportfolio-alpha-gules-77.vercel.app/
 
 ### GitHub
 🔗 https://github.com/Mohamed-sabeek
