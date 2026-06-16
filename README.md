@@ -105,6 +105,15 @@ Competitive Exam Preparation Platform featuring:
 - Study materials
 - Performance analytics
 
+### 🤖 Arivon
+AI-Powered Career Intelligence Platform featuring:
+
+- Personalized job matching
+- Skill gap analysis
+- AI Career Assistant (Llama 3)
+- 2-level skill verification (MCQ + GitHub)
+- Smart analytics dashboard
+
 ### 🍴 Al Safi Beda
 Client project for a homemade food brand featuring:
 
@@ -143,6 +152,11 @@ Highlights include:
 ### Backend
 - Node.js
 - Express.js
+- Python
+- Django
+- Java
+- Spring Boot
+- FastAPI
 
 ### Database
 - MongoDB

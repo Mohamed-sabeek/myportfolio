@@ -75,9 +75,17 @@ export default function Projects() {
                 variants={fadeInUp}
                 className="w-full lg:w-2/5 flex flex-col"
               >
-                {project.category && (
-                  <span className="text-accentGold text-sm tracking-[0.2em] uppercase font-semibold mb-2">{project.category}</span>
-                )}
+                <div className="flex items-center gap-4 mb-2">
+                  {project.category && (
+                    <span className="text-accentGold text-sm tracking-[0.2em] uppercase font-semibold">{project.category}</span>
+                  )}
+                  {project.badge && (
+                    <span className="px-3 py-1 rounded-full bg-accentGold/10 text-accentGold border border-accentGold/30 text-xs font-bold tracking-widest uppercase flex items-center gap-1.5 shadow-[0_0_10px_rgba(212,175,55,0.1)]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-accentGold animate-pulse"></span>
+                      {project.badge}
+                    </span>
+                  )}
+                </div>
                 <h3 className="text-3xl md:text-4xl font-bold text-text mb-2">{project.title}</h3>
                 {project.subtitle && (
                   <p className="text-text/60 font-medium mb-6">{project.subtitle}</p>

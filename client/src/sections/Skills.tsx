@@ -18,7 +18,9 @@ import {
   SiHtml5,
   SiPostgresql,
   SiPostman,
-  SiFirebase
+  SiFirebase,
+  SiSpringboot,
+  SiFastapi
 } from 'react-icons/si';
 import { FaAws, FaJava, FaCss3Alt } from 'react-icons/fa';
 import { staggerContainer } from '../animations/variants';
@@ -44,7 +46,9 @@ const technologies = [
   { name: 'CSS3', icon: FaCss3Alt, color: '#1572B6', experience: '5+ Years', projects: '30+ Projects', desc: 'Style sheet language for designing and formatting web presentations.' },
   { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1', experience: '2+ Years', projects: '8+ Projects', desc: 'Advanced, enterprise-class open-source relational database system.' },
   { name: 'Firebase', icon: SiFirebase, gradient: 'url(#firebase-gradient)', experience: '3+ Years', projects: '10+ Projects', desc: 'Comprehensive app development platform with real-time backend services.' },
-  { name: 'Postman', icon: SiPostman, color: '#FF6C37', experience: '3+ Years', projects: '20+ Projects', desc: 'Industry-standard API platform for designing, building, and testing APIs.' }
+  { name: 'Postman', icon: SiPostman, color: '#FF6C37', experience: '3+ Years', projects: '20+ Projects', desc: 'Industry-standard API platform for designing, building, and testing APIs.' },
+  { name: 'Spring Boot', icon: SiSpringboot, color: '#6DB33F', experience: '1+ Year', projects: '3+ Projects', desc: 'Framework for creating stand-alone, production-grade Spring based applications.' },
+  { name: 'FastAPI', icon: SiFastapi, color: '#009688', experience: '1+ Year', projects: '3+ Projects', desc: 'Modern, fast web framework for building APIs with Python.' }
 ];
 
 export default function Skills() {

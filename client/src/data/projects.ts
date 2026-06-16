@@ -3,6 +3,20 @@ import sece2 from '../assets/secesmartclass/2.png';
 import sece3 from '../assets/secesmartclass/3.png';
 import sece4 from '../assets/secesmartclass/4.png';
 
+import arivon1 from '../assets/arivon/1.png';
+import arivon2 from '../assets/arivon/2.png';
+import arivon3 from '../assets/arivon/3.png';
+import arivon4 from '../assets/arivon/4.png';
+import arivon5 from '../assets/arivon/5.png';
+import arivon6 from '../assets/arivon/6.png';
+import arivon7 from '../assets/arivon/7.png';
+import arivon8 from '../assets/arivon/8.png';
+import arivon9 from '../assets/arivon/9.png';
+import arivon10 from '../assets/arivon/10.png';
+import arivon11 from '../assets/arivon/11.png';
+import arivon12 from '../assets/arivon/12.png';
+import arivon13 from '../assets/arivon/13.png';
+
 import crackit1 from '../assets/crackit/1.png';
 import crackit2 from '../assets/crackit/2.png';
 import crackit3 from '../assets/crackit/3.png';
@@ -59,6 +73,22 @@ export const featuredProjects = [
     githubUrl: 'https://github.com/Mohamed-sabeek/CrackIt',
     liveUrl: 'https://crack-it-two.vercel.app/',
     hasDetails: true,
+  },
+  {
+    id: 'arivon',
+    title: 'Arivon',
+    subtitle: 'AI-Powered Career Intelligence Platform',
+    category: 'Featured Project',
+    status: 'Completed',
+    type: 'AI / Full Stack / MERN / Career Tech',
+    description: 'AI-powered career intelligence platform that matches users with relevant careers, identifies skill gaps, and validates skills through assessments and real-world projects.',
+    tech: ['React 19', 'Tailwind CSS v4', 'Node.js', 'Express.js', 'MongoDB', 'Groq API', 'Llama 3', 'JWT'],
+    image: 'bg-gradient-to-br from-surface to-[#1F5A5A]/50',
+    images: [arivon1, arivon2, arivon3, arivon4, arivon5, arivon6, arivon7, arivon8, arivon9, arivon10, arivon11, arivon12, arivon13],
+    githubUrl: 'https://github.com/Mohamed-sabeek/Arivon',
+    liveUrl: 'https://arivon.vercel.app',
+    hasDetails: true,
+    badge: 'AI Powered'
   }
 ];
 

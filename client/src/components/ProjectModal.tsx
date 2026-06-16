@@ -68,7 +68,9 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
               <div className="mb-16">
                 <h3 className="text-xl font-bold text-text mb-4 border-b border-accentGold/20 pb-2 inline-block">Overview</h3>
                 <p className="text-mutedText leading-relaxed text-lg font-light">
-                  {project.id === 'sece-smartclass' 
+                  {project.id === 'arivon'
+                    ? "Arivon is a full-stack AI-powered career intelligence platform designed for students and job seekers. The platform goes beyond traditional job portals by combining intelligent career matching, AI-generated recommendations, and structured skill validation. Users complete onboarding with their skills, interests, experience, and career goals. The system then analyzes their profile using a hybrid AI approach that combines backend scoring logic with LLM-powered reasoning to generate personalized career insights."
+                    : project.id === 'sece-smartclass' 
                     ? "SECE SmartClass is a professional full-stack classroom management ecosystem designed to streamline institutional workflows, automate attendance tracking, and facilitate secure live virtual instruction."
                     : project.id === 'crack-it'
                     ? "CrackIt is a production-ready full-stack learning platform designed to help students prepare for competitive examinations through structured assessments, AI-assisted guidance, current affairs updates, and centralized study resources."
@@ -79,6 +81,137 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                     : project.description}
                 </p>
               </div>
+
+              {project.id === 'arivon' && (
+                <>
+                  {/* Gallery */}
+                  {project.images && project.images.length > 0 && (
+                    <div className="mb-16">
+                      <h3 className="text-xl font-bold text-text mb-6 border-b border-accentGold/20 pb-2 inline-block">Project Gallery</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {project.images.map((img: string, idx: number) => (
+                          <div 
+                            key={idx} 
+                            onClick={() => { setLightboxIndex(idx); setLightboxOpen(true); }}
+                            className="aspect-video rounded-xl overflow-hidden cursor-pointer group border border-backgroundSecondary relative"
+                          >
+                            <img src={img} alt={`Gallery ${idx+1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                              <span className="text-white text-sm tracking-widest uppercase border border-white/50 px-4 py-2 rounded-full">View</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Core Features */}
+                  <div className="mb-16">
+                    <h3 className="text-xl font-bold text-text mb-6 border-b border-accentGold/20 pb-2 inline-block">Key Features</h3>
+                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {[
+                        "AI-Powered Career Matching Engine",
+                        "Personalized Job Recommendations with logic explanation",
+                        "Skill Gap Analysis and actionable feedback",
+                        "AI Career Assistant powered by Groq (Llama 3)",
+                        "Skill Verification System with 2 levels",
+                        "Level 1: MCQ Assessment Engine",
+                        "Level 2: GitHub Project Submission Workflow",
+                        "Smart Dashboard & Analytics",
+                        "Secure JWT Authentication",
+                        "Responsive User Experience"
+                      ].map((feature, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <div className="w-1.5 h-1.5 rounded-full bg-accentGold mt-2 shrink-0" />
+                          <span className="text-mutedText">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Architecture */}
+                  <div className="mb-16">
+                    <h3 className="text-xl font-bold text-text mb-6 border-b border-accentGold/20 pb-2 inline-block">Architecture</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <div className="bg-background rounded-2xl p-6 border border-surface">
+                        <h4 className="text-accentGold font-medium mb-4 flex items-center gap-2"><Monitor className="w-4 h-4"/> Frontend</h4>
+                        <ul className="text-sm text-mutedText space-y-2">
+                          <li className="bg-surface px-3 py-2 rounded-lg">React 19</li>
+                          <li className="bg-surface px-3 py-2 rounded-lg">Vite</li>
+                          <li className="bg-surface px-3 py-2 rounded-lg">Tailwind CSS v4</li>
+                          <li className="bg-surface px-3 py-2 rounded-lg">Axios & Router</li>
+                        </ul>
+                      </div>
+                      
+                      <div className="bg-background rounded-2xl p-6 border border-surface">
+                        <h4 className="text-accentGold font-medium mb-4 flex items-center gap-2"><Server className="w-4 h-4"/> Backend & DB</h4>
+                        <ul className="text-sm text-mutedText space-y-2">
+                          <li className="bg-surface px-3 py-2 rounded-lg">Node.js</li>
+                          <li className="bg-surface px-3 py-2 rounded-lg">Express.js</li>
+                          <li className="bg-surface px-3 py-2 rounded-lg">MongoDB</li>
+                          <li className="bg-surface px-3 py-2 rounded-lg">Mongoose ODM</li>
+                        </ul>
+                      </div>
+
+                      <div className="bg-background rounded-2xl p-6 border border-surface">
+                        <h4 className="text-accentGold font-medium mb-4 flex items-center gap-2"><Database className="w-4 h-4"/> AI Integration</h4>
+                        <ul className="text-sm text-mutedText space-y-2">
+                          <li className="bg-surface px-3 py-2 rounded-lg">Groq API</li>
+                          <li className="bg-surface px-3 py-2 rounded-lg">Llama 3 LLM</li>
+                          <li className="bg-surface px-3 py-2 rounded-lg">Hybrid AI Engine</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Highlights */}
+                  <div className="mb-16">
+                    <h3 className="text-xl font-bold text-text mb-6 border-b border-accentGold/20 pb-2 inline-block">Highlights</h3>
+                    <div className="flex flex-wrap gap-3">
+                      {[
+                        "AI-Powered Job Matching",
+                        "Hybrid Recommendation Engine",
+                        "Real-World Skill Validation",
+                        "Full MERN Architecture",
+                        "Career Guidance Assistant"
+                      ].map((item, idx) => (
+                        <span key={idx} className="bg-surface border border-backgroundSecondary px-4 py-2 rounded-xl text-sm text-mutedText">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Skill Verification */}
+                  <div className="mb-8">
+                    <h3 className="text-xl font-bold text-text mb-6 border-b border-accentGold/20 pb-2 inline-block">Skill Verification System</h3>
+                    <div className="bg-gradient-to-br from-surface to-backgroundSecondary border border-accentGold/10 rounded-2xl p-6 sm:p-8 relative overflow-hidden">
+                      <div className="absolute top-0 right-0 p-8 opacity-5">
+                        <Monitor className="w-32 h-32" />
+                      </div>
+                      <h4 className="text-lg font-bold text-text mb-4 relative z-10">Two-Level Validation Flow</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                        <div>
+                          <p className="text-accentGold text-sm uppercase tracking-widest mb-3">Level 1: Screening</p>
+                          <ul className="space-y-2 text-mutedText text-sm">
+                            <li>• MCQ-based knowledge assessment</li>
+                            <li>• Evaluates theoretical understanding</li>
+                            <li>• Dynamic question generation</li>
+                          </ul>
+                        </div>
+                        <div>
+                          <p className="text-accentGold text-sm uppercase tracking-widest mb-3">Level 2: Practical</p>
+                          <ul className="space-y-2 text-mutedText text-sm">
+                            <li>• Real-world problem statement</li>
+                            <li>• GitHub repository submission</li>
+                            <li>• Validates industry readiness</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
 
               {project.id === 'sece-smartclass' && (
                 <>
